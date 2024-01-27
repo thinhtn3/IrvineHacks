@@ -1,0 +1,22 @@
+{
+  "name": "irvinehacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "servers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinhtn3/IrvineHacks.git"
+  },
+  "author": "Tenzin, Tony, Kelly, Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinhtn3/IrvineHacks/issues"
+  },
+  "homepage": "https://github.com/thinhtn3/IrvineHacks#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
