@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const router = express.Router();
 
 const randomstring = require('randomstring');
@@ -12,6 +13,13 @@ let refreshToken = undefined;
 
 let home_uri = 'http://localhost:3000';
 let redirect_uri = 'http://localhost:8080/spotify/callback';
+
+router.use(cors(
+    {
+        origin: home_uri,
+        credentials: true
+    }
+));
 
 router.get('/login', (req, res) => {
     const state = randomstring.generate(16);
@@ -60,13 +68,13 @@ router.get('/callback', (req, res) => {
         })
 });
 
-// router.get('/check-auth', (req, res) => {
-//     if (accessToken) {
-//         res.json({ "accessToken": accessToken });
-//     } else {
-//         res.json({ "accessToken": null });
-//     }
-// });
+router.get('/check-auth', (req, res) => {
+    if (accessToken) {
+        res.json({ "accessToken": accessToken });
+    } else {
+        res.json({ "accessToken": null });
+    }
+});
 
 router.get('/genres', (req, res) => {
     const accessHeader = {
