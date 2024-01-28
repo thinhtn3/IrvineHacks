@@ -1,0 +1,13 @@
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 650px;
+}
+
+.eventList {
+    overflow-y: scroll;
+    min-width: 1400px;
+    max-height: 100vh;
+    overflow-x: hidden;
+}

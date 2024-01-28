@@ -8,8 +8,9 @@ const cookieParser = require('cookie-parser');
 // const fetch = require('node-fetch')
 let accessToken = undefined;
 let refreshToken = undefined;
+const spotifyservice = require("./routes/spotifyService.js")
 
-
+app.use('/spotify', spotifyservice);
 // middleware that will trigger for every request that comes in
 app.use(express.json()); // if anty requests come in, parse json data from request body and attatch to request object
 app.use(cookieParser())

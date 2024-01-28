@@ -1,0 +1,55 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    background: rgb(0,52,114);
+    background: linear-gradient(180deg, rgba(0,52,114,1) 0%, rgba(0,0,0,1) 83%);
+
+
+}
+
+h2 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(0,52,114);
+    padding-left: 7.5em;
+    padding-right: 4.75em;
+    color: white;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+img{
+    width: 80px;
+    align-self: center;
+}
+
+.logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: black;
+    padding: 0em 0.7em;
+}
+
+.logo h1 {
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: 3em;
+    color: white;
+}
