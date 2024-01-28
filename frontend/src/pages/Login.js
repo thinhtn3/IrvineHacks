@@ -2,18 +2,26 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 // import Cookies from 'js-cookie'
 import { useState, useEffect } from "react";
-import { Box,Button, Center, ChakraProvider, Flex, Image, Text, extendTheme} from "@chakra-ui/react";
-
+import {
+  Box,
+  Button,
+  Center,
+  ChakraProvider,
+  Image,
+  Text,
+  extendTheme,
+} from "@chakra-ui/react";
 
 const theme = extendTheme({
-    styles: {
-      global: {
-        body: {
-          bg: "#003472",
-        },
+  styles: {
+    global: {
+      body: {
+        bg: "#003472",
+        //or #4d94ff, both are cool :)
       },
     },
-  });
+  },
+});
 
 const Login = () => {
   const navigate = useNavigate();
@@ -46,60 +54,61 @@ const Login = () => {
 
   return (
     <ChakraProvider theme={theme}>
-    <div>
+      <div>
+        <Center height="100vh">
+          <Box
+            width="450px"
+            height="600px"
+            bg="black"
+            borderRadius="md"
+            p="4"
+            textAlign="center"
 
-    <Center height = "100vh">
-    <Box
-      width="450px"
-      height="600px"
-      bg="black"
-      borderRadius="md"
-      p="4"
-      textAlign='center'
-      
-    //   textAlign="center"
-    //   transform="translate(-50%, -50%)"
-    >
+            //   textAlign="center"
+            //   transform="translate(-50%, -50%)"
+          >
+            <Box>
+              <Text fontSize="2xl" fontWeight="bold">
+                Log in to your Spotify Account
+              </Text>
 
-        <Box>
-            <Text fontSize='2xl' fontWeight='bold'>
-            Log in to your 
-            Spotify Account
-            </Text>
+              <Image
+                src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
+                alt="Spotify Logo"
+                boxSize="500px"
+                objectFit="contain"
+              />
+            </Box>
 
-        <Image src = "https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt = "Spotify Logo" boxSize="500px" objectFit='contain'/>
-        </Box>
-
-        {/* <Flex
+            {/* <Flex
         direction="column"
         justify = 'space-between'
         height = "100%">
         </Flex> */}
-        </Box>
-        {/* <Center> */}
-      <Button
-        onClick={() =>
-          (window.location.href = "http://localhost:8080/spotify/login")
-        }
-
-        size = 'lg'
-        colorScheme="blue"
-        position='absolute'
-        down = "100%"
-        transform="translate(0%, 500%)"
-      >
-        Log in
-      </Button>
-      {/* </Center> */}
-    </Center>
-      {/* </Box>
+          </Box>
+          {/* <Center> */}
+          <Button
+          size="xl"
+            onClick={() =>
+              (window.location.href = "http://localhost:8080/spotify/login")
+            }
+            size="lg"
+            colorScheme="blue"
+            position="absolute"
+            down="100%"
+            transform="translate(0%, 500%)"
+          >
+            Log in
+          </Button>
+          {/* </Center> */}
+        </Center>
+        {/* </Box>
       </ChakraProvider> */}
-      
-      {/* <a href="http://localhost:8080/spotify/login">
+
+        {/* <a href="http://localhost:8080/spotify/login">
                 Login with Spotify
             </a> */}
-
-    </div>
+      </div>
     </ChakraProvider>
   );
 };

@@ -154,7 +154,6 @@ router.get("/events", async (req, res) => {
       Authorization: "Bearer " + aT,
     };
 
-    // console.log("DO WE HAVE IT FUUUCKKKKK?!?! ", aT);
     const topArtistResponse = await fetch(
       "https://api.spotify.com/v1/me/top/artists?limit=10",
       { method: "GET", headers: accessHeader }
@@ -172,7 +171,7 @@ router.get("/events", async (req, res) => {
     }
     main.userTopArtists = userTopArtists;
 
-    console.log("UTA: ", userTopArtists);
+    // console.log("UTA: ", userTopArtists);
     const relatedArtistResponse = await fetch(
       `https://api.spotify.com/v1/artists/${userTopArtists[0].id}/related-artists`,
       { method: "GET", headers: accessHeader }
@@ -193,11 +192,13 @@ router.get("/events", async (req, res) => {
 
     for (let i = 0; i < 4; i++) {
       const ticketmasterArtistResponse = await fetch(
-        `https://app.ticketmaster.com/discovery/v2/events?apikey=${process.env.TICKETMASTER_APIKEY}&keyword=${userTopArtists[i].name}&locale=*`
+        `https://app.ticketmaster.com/discovery/v2/events?apikey=RaIbBT6IfoziuiyuX8Al4XQ10qyp97Ra&keyword=${userTopArtists[i].name}&locale=*`
       );
       const ticketmasterArtistData = await ticketmasterArtistResponse.json();
+      console.log(userTopArtists[i]);
+      // console.log(ticketmasterArtistData.page.totalPages);
 
-      if (ticketmasterArtistData._embedded && ticketmasterArtistData.page?.totalPages !== 0) {
+      if (ticketmasterArtistData.page && ticketmasterArtistData.page.totalPages !== 0) {
         subGenreId =
           ticketmasterArtistData._embedded.events[0].classifications[0].subGenre
             .id;
@@ -205,26 +206,24 @@ router.get("/events", async (req, res) => {
           ticketmasterArtistData._embedded.events[0].classifications[0].genre
             .id;
         const ticketMasterGenreResponse = await fetch(
-          `https://app.ticketmaster.com/discovery/v2/events?apikey=UXfzaxTVp7lHKoYVS9MkZrFS6aLJvxJh&locale=*&subGenreId=${subGenreId}&dmaId=324`
+          `https://app.ticketmaster.com/discovery/v2/events?apikey=RaIbBT6IfoziuiyuX8Al4XQ10qyp97Ra&locale=*&subGenreId=${subGenreId}&dmaId=324`
         );
         const ticketmasterGenreData = await ticketMasterGenreResponse.json();
 
-        for (events of ticketmasterGenreData._embedded?.events) {
+        for (events of ticketmasterGenreData._embedded.events) {
           if (duplicate.includes(events.id) === false) {
             let eventProfile = {};
             eventProfile.eventName = events.name;
             eventProfile.id = events.id;
             duplicate.push(events.id);
+            eventProfile.localDate = events.dates.start.localDate;
             eventProfile.imgUrl = events.images[1].url;
-
             if (events.priceRanges) {
               eventProfile.min = events.priceRanges[0].min;
-              // console.log(events.priceRanges[0]);
               eventProfile.max = events.priceRanges[0].max;
               eventProfile.currency = events.priceRanges[0].currency;
             }
 
-            eventProfile.localDate = events.dates.start.localDate;
             eventProfile.venueName = events._embedded.venues[0].name;
             eventProfile.addressLine = events._embedded.venues[0].address.line1;
             eventProfile.city = events._embedded.venues[0].city.name;
@@ -248,10 +247,8 @@ router.get("/events", async (req, res) => {
       main.userSuggestedEvents = userSuggestedEvents;
     }
 
-    // console.log(main)
-
+    console.log(main);
     res.json(main);
-    console.log("I Responded!");
   } catch (e) {
     console.log("No events found");
     console.log(e);
