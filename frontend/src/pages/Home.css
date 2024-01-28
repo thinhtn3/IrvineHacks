@@ -20,13 +20,14 @@ p {
     justify-content: space-between;
     background-color: #003472;
     padding-left: 7.5em;
-    padding-right: 4.75em;
+    padding-right: 5.75em;
     color: white;
 }
 
 .wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 h1 {

@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardBody,
   CardFooter,
@@ -18,7 +19,7 @@ const EventFinder = () => {
   const fetchEvents = async () => {
     try {
       console.log("AT EVENTS");
-      const response = await fetch("http://localhost:8080/spotify/events", {credentials : 'include'});
+      const response = await fetch("http://localhost:8080/spotify/events", { credentials: 'include' });
       const data = await response.json();
       setEventsInfo(data["userSuggestedEvents"]);
       console.log("DAATA", data["userSuggestedEvents"][0]);
@@ -32,63 +33,70 @@ const EventFinder = () => {
   }, []);
 
   return (
-    <div
-      style = {{overflowY: "scroll", minWidth: "1400px", maxHeight: "100vh", overflowX: "hidden"}}
-      sx={{
-        "::-webkit-scrollbar": {
-          display: "none",
-        },
-      }}>
-      {eventsInfo.map((events) => {
-        return (
-          <Card
-            backgroundColor="#000000dd"
-            style={{ left: "440px", backgroundColor: "000000dd", border: "0px solid black",borderBottom: '1px solid #1b1c1b'}}
-            key={events.id}
-            direction={{ base: "column", sm: "row" }}
-            variant="outline"
-          >
-            <Image
-              style={{ minWidth: "250px", height: "280px" }}
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src={events.imgUrl}
-              alt="event image"
-            />
+    <Box
 
-            <Stack>
-              <CardBody className="center">
-                <Heading size="md">{events.eventName}</Heading>
 
-                <Text py="2">
-                  Date: {new Date(events.localDate).toLocaleDateString("en-US")}
-                </Text>
-                <Text py="2">
-                  Address: {events.addressLine} {events.city},{" "}
-                  {events.stateCode} <strong>@</strong> {events.venueName}
-                </Text>
-                <Text>Genre: {events.genres}</Text>
-                <Text>
-                  Pricing: {events.min} - {events.max} {events.currency}
-                </Text>
-              </CardBody>
+      style={{ overflowY: "scroll", maxHeight: "80vh", overflowX: "none" }}
+      w="650px" // sets the width to 300 pixels
+      // You can also use responsive values like:
+      // w={{ base: "100%", md: "50%", lg: "25%" }}
+      boxShadow="md" // medium shadow
+      borderRadius="lg" // large border radius>
+    >
+      <Flex flexWrap="wrap">
+        {eventsInfo.map((events) => {
+          return (
+            <Card
+              backgroundColor="#000000dd"
+              key={events.id}
+              direction={{ base: "column", sm: "row" }}
+              variant="outline"
+              // height="200px"
+              width='700px'
 
-              <CardFooter>
-                <Button
-                  variant="solid"
-                  colorScheme="blue"
-                  onClick={() =>
-                    (window.location.href = events.ticketmasterURL)
-                  }
-                >
-                  View Tickets
-                </Button>
-              </CardFooter>
-            </Stack>
-          </Card>
-        );
-      })}
-    </div>
+            >
+              <Image
+                style={{ minWidth: "150px", height: "150px" }}
+                objectFit="cover"
+                maxW={{ base: "100%", sm: "200px" }}
+                src={events.imgUrl}
+                alt="event image"
+              />
+
+              <Stack>
+                <CardBody className="center">
+                  <Heading size="md">{events.eventName}</Heading>
+
+                  <Text py="2">
+                    Date: {new Date(events.localDate).toLocaleDateString("en-US")}
+                  </Text>
+                  <Text py="2">
+                    Address: {events.addressLine} {events.city},{" "}
+                    {events.stateCode} <strong>@</strong> {events.venueName}
+                  </Text>
+                  <Text>Genre: {events.genres}</Text>
+                  <Text>
+                    Pricing: {events.min} - {events.max} {events.currency}
+                  </Text>
+                </CardBody>
+
+                <CardFooter>
+                  <Button
+                    variant="solid"
+                    colorScheme="blue"
+                    onClick={() =>
+                      (window.location.href = events.ticketmasterURL)
+                    }
+                  >
+                    View Tickets
+                  </Button>
+                </CardFooter>
+              </Stack>
+            </Card>
+          );
+        })}
+      </Flex>
+    </Box>
   );
 };
 

@@ -61,8 +61,9 @@ const Home = () => {
         </div>
 
         <div className="main">
-          <EventFinder />
+
           <Topartists />
+          <EventFinder />
           <Similarartist />
         </div>
 

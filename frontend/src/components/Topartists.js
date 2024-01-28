@@ -43,7 +43,7 @@ const Topartists = () => {
         overflowY: "scroll",
         maxWidth: "440px",
         maxHeight: "100vh",
-        position: "absolute",
+        // position: "absolute",
       }}
       sx={{
         "::-webkit-scrollbar": {
