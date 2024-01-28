@@ -36,7 +36,7 @@ const EventFinder = () => {
     <Box
 
 
-      style={{ overflowY: "scroll", maxHeight: "80vh", overflowX: "none" }}
+      style={{ overflowY: "scroll", maxHeight: "100vh", overflowX: "none" }}
       w="650px" // sets the width to 300 pixels
       // You can also use responsive values like:
       // w={{ base: "100%", md: "50%", lg: "25%" }}

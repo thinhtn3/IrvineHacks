@@ -11,7 +11,7 @@
 .eventList {
     overflow-y: scroll;
     min-width: 1400px;
-    max-height: 100vh;
+    max-height: 120vh;
     overflow-x: hidden;
 }
 
