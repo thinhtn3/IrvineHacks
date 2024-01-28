@@ -1,6 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import Cookies from 'js-cookie'
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+  } from '@chakra-ui/react'
+
 
 const Home = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -30,7 +40,8 @@ const Home = () => {
     return (
         <div>
             <h1>Spotify Auth Testing</h1>
-            {loggedIn ? <p>logged in</p> : <a href="http://localhost:8080/spotify/login">Login with Spotify</a>}
+            {/* {loggedIn ? <p>logged in</p> : <a href="http://localhost:8080/spotify/login">Login with Spotify</a>} */}
+            <Modal></Modal>
             <Button colorScheme='teal' onClick={handleGetGenre}>Get genres</Button>
         </div>
     )
