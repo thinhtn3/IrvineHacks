@@ -195,10 +195,11 @@ router.get("/events", async (req, res) => {
         `https://app.ticketmaster.com/discovery/v2/events?apikey=RaIbBT6IfoziuiyuX8Al4XQ10qyp97Ra&keyword=${userTopArtists[i].name}&locale=*`
       );
       const ticketmasterArtistData = await ticketmasterArtistResponse.json();
-      console.log(userTopArtists[i]);
+      // console.log(userTopArtists[i]);
       // console.log(ticketmasterArtistData.page.totalPages);
 
       if (ticketmasterArtistData.page && ticketmasterArtistData.page.totalPages !== 0) {
+        console.log(ticketmasterArtistData._embedded.events[0])
         subGenreId =
           ticketmasterArtistData._embedded.events[0].classifications[0].subGenre
             .id;
